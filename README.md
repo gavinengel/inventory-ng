@@ -15,4 +15,4 @@ Includes:
  - optional node/express server (from https://github.com/spadin/simple-express-static-server)
  - bootstrap/query (cdn only for easy bloat removal))
 
-@kethle
+
