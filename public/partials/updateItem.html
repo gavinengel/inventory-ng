@@ -1,0 +1,38 @@
+<div id="jsoncell" class="jsoncell">waiting ...</div>
+  
+  <form id="update" ng-submit="processUpdate()" ng-show='true'>
+    <fieldset>
+      <div class='content float-left'>
+        <div class='cardform'>
+          <div class='cardformtitle'>
+              Update Item
+ 
+          </div>
+          <div class='cardformbody'>
+            <label for="itemid">Item ID:</label>
+            <input type="text" ng-model="formData.itemid" name="itemid" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="name">Item Name (required):</label>
+            <input type="text" ng-model="formData.name" name="name" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="description">Description:</label>
+            <input type="text" ng-model="formData.description" name="description" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="quantity">Quantity:</label>
+            <input type="text" ng-model="formData.quantity" name="quantity" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="price">Unit Price:</label>
+            <input type="text" ng-model="formData.price" name="price" value="">
+          </div>
+          <div class="cardfooter">
+          <button type="submit" class="button-teal" value="Update" >Submit</button>&nbsp;<a href="#home"><input type="button" class="button-red" value="Cancel"></a>
+          {{formData}}{{errorName}}
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form> 

@@ -1,37 +1,70 @@
 <html>
   <head>
-    <title>ng-template</title>
+    <title>inventory-ng</title>
 
     <script src="js/lib/angular/angular.min.js"></script>
+    <script src="js/lib/angular-route/angular-route.min.js"></script>
     <script src="js/app.js"></script>   
     <script src="js/controllers/controllers.js"></script>
     <script src="js/services/services.js"></script> 
-    <link rel="stylesheet" type="text/css" href="css/style.css"> </head> 
+    <link rel="stylesheet" type="text/css" href="css/items.css"> </head> 
     
     <!-- remove jquery/bootstrap before writing any real code -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
     <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css">
 
-  </head>
-  <body ng-app="testApp">
-    <div class="container">
-      <div ng-view></div>
-      <div ng-controller="testController">
-        <h1>Say, {{hello}}</h1>
+   
 
-        <div> <input type="text" ng-model="testControllerTest" placeholder="Zipcode">
-          <div><button class="btn btn-success" value="Query" ng-click="processAddress();">Query</button></div>
-        </div>
-      </div>
-    </div>
-  </body>
+    <script>
+      function createupdate(){
+        document.getElementById("create").style.display = "table-row";
+
+      }
+
+      var jsonflag = false;
+    function showhidejson(){
+  
+  if (!jsonflag){
+     document.getElementById('jsoncell').style.display ='inline';
+        document.getElementById('showjson').value ='hide';
+     jsonflag=true;
+     return false; 
+  }else
+    document.getElementById('jsoncell').style.display ='none';
+    document.getElementById('showjson').value ='json';
+     jsonflag=false;
+     return false; 
+    }
+      </script>
+</head>
+
+
+<body ng-app="inventoryNg">
+  <header role=banner>
+  <h1><a href="./">inventory</a></h1>
+</header>
+
+  <div class=bar>
+    <a href="#create"><input type='button' class='button-teal' value= 'Create New Item'></a>&nbsp;
+    <input type='button' value='json' onclick='showhidejson();' id='showjson' class='button-lightblue' >&nbsp;
+    <span class="search success" id="search" > Search: &nbsp;&nbsp;<input ng-model="query"></span><select ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="age">Newest</option>
+      </select>
+  </div> 
+
+ <div ng-view></div>
+
+
+  
+   <!-- <div ng-repeat="item in items | array | filter:query">
+      {{item.item_name}} 
+      <p>{{item.item_desc}}</p>
+    </div> -->
+
+</body>
 </html>
-
-
-
-
-
 
 
 

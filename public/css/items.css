@@ -1,0 +1,331 @@
+html, body, body div, h1, h2, h3, h4, p, pre, em, img, b, i, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+  font-family: roboto, arial, helvetica, sans-serif;
+  font-size: 100%;
+}
+
+
+
+a, a:visited{
+  color: #01579b;
+  text-decoration: none;
+}
+
+
+body {
+background: #eceff1;
+ color: #fff;
+ margin: 0px;
+ font-family: roboto, arial, helvetica, sans-serif;
+ font-size: 12px;
+}
+
+header{
+  margin: 0px;
+   background: #03a9f4;
+   display: block;
+ margin-bottom: 0px; 
+ padding: 8px;
+}
+
+header a, a:visited{
+  color: #fff;
+  text-decoration: none;
+ } 
+
+#main {
+  background: #eee;
+}
+
+}
+/* basic styles */
+h1, h2, h3, h4, h5, h6 {padding: 0; }
+
+h1 { font-size: 2em; 
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin: 0px;
+}
+h2 { 
+  font-size: 1.75em;
+ font-weight: 500;
+ margin-bottom: 8px;
+}
+
+h4{
+  font-size: 1em; 
+  margin-bottom: 1em;
+}
+
+.button-lightblue{
+      background: #656273;
+    color: #ddd;
+  font-weight: 100em;
+  padding: 5px;
+  border: 3px;
+  
+  width: auto;
+  }
+
+.bar{
+  margin: 0px;
+  margin-top: 8px;
+  margin-bottom: 3px;
+ 
+}
+
+.button-teal{
+  background:   #009688;
+  color: #ddd;
+  font-weight: bold;
+  padding: 5px;
+  border: 3px;
+  width: auto;
+  } 
+
+  .button-blued:hover{
+    background: #0288d1;
+  }  
+
+  .button-blued{
+  background:   #b3e5fc;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border: 3px;
+  width: auto;
+  }
+
+
+  .button-teal:hover{
+    background: #00796b;
+  }
+  .button-red{
+  background:   #f9bdbb;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px;
+  border: 3px;
+  width: auto;
+  }
+
+  .button-red:hover{
+    background: #f36c60;
+  }
+
+ .jsoncell{
+  margin-bottom: 20px;
+  color: black;
+}
+       
+
+
+.success{
+  font-weight: bold;
+  font-style: italic;
+  color: #01579b;
+  font-size: 1em;
+}
+
+.error{
+  font-weight: bold;
+  font-style: italic;
+  color: #e51c23;
+  font-size: 1em;
+}
+
+.cardform{
+      background:#fff;
+      border:1px solid #AAA;
+      border-bottom:3px solid #BBB;
+      padding:0px;
+      margin: 3px;
+      overflow: hidden;
+      color: #01579b;
+      float: left;
+
+}
+
+.cardformbody{
+  background: #fff;
+  margin: 3px;
+  padding: 10px;
+}
+
+
+fieldset {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  
+    margin-top: 1em;
+}
+
+legend {
+    padding:0 5px;
+    text-align:left;
+    color: #fff;
+}
+
+fieldset > legend + div {
+    margin-top:0;
+}
+fieldset > div:last-child {
+    margin-bottom:0;
+}
+label {
+    display:inline-block;
+    width:116px;
+}
+input {
+    width:168px;
+}
+input[type="submit"] {
+    width:auto;
+}
+
+
+
+.cardformtitle{
+  font-weight: bold;
+  font-size: 1em;
+  float: none;
+  width: 300;
+  overflow: hidden;
+  color: #37474f;
+  border-bottom: 0px solid #ddd;
+  background: #fff;
+  padding-top: 8px;
+}
+
+
+  .card {
+      background:#fff;
+      border:1px solid #AAA;
+      border-bottom:3px solid #BBB;
+      padding:0px;
+      margin: 3px;
+      overflow: hidden;
+      color: #01579b;
+      float: left;
+}
+
+.altlinks { 
+  color:#01579b;
+  
+}
+.cardbody{
+  overflow: hidden;
+  height: 110px;
+  background: #fff;
+}
+.cardfooter{
+  display: inline-block;
+  overflow: visible; 
+  
+}
+#content {
+
+}
+
+.cardtitle{
+  font-weight: bold;
+  font-size: 1em;
+  float: none;
+  width: 300px;
+  overflow: hidden;
+  color: #37474f;
+  border-bottom: 0px solid #ddd;
+  background: #fff;
+}
+
+.float-left .card .cardform {
+    float:left;
+    width:250px;  
+    height:225px;
+}
+
+.card .cardform h1 {
+    margin:0px;
+    padding:10px;
+    padding-bottom:0px;
+}
+
+.card div {
+    margin:0px;
+    padding:3px;
+    width: 300px;
+}
+
+.cardform div {
+    padding:3px;
+    padding: 3px;
+}
+
+
+.parsedinventory{
+  margin-top: 1em;
+  background: #fff;
+}
+
+
+
+
+
+    #jsoncell {
+      font-weight: normal;
+      font-family: courier;
+      font-size: .75em;
+      color: #01579b;
+      display: none
+      }
+
+      #statuscell {
+      font-weight: normal;
+      font-family: courier;
+      font-size: .75em;
+      color: green;
+      }
+   
+    #create{
+      display:normal;
+      font-weight: normal;
+      border: 2px;
+      border-color: white;
+     
+    }
+    
+
+    #update{
+      display:normal;
+      font-weight: normal;
+      border: 2px;
+      border-color: white;
+     
+    }
+
+    #jsoncell {
+      font-weight: normal;
+      font-family: courier;
+      font-size: .75em;
+      color: #01579b;
+      display: none
+      }
+
+    #search{
+      font-weight: bold;
+    }
+
+      #statuscell {
+      font-weight: normal;
+      font-family: courier;
+      font-size: .75em;
+      color: green;
+      }
+   

@@ -20,6 +20,7 @@
     "express": "^4.1.2",
     "body-parser": "^1.1.2",
     "errorhandler": "^1.0.1",
-    "method-override": "^1.0.0"
+    "method-override": "^1.0.0",
+    "mongoose": "~3.6.13"
   }
 }

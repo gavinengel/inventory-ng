@@ -1,0 +1,38 @@
+
+<div>
+  <form id="create" ng-submit="processUpdate()" ng-show='true'>
+    <fieldset>
+      <div class="content float-left">
+        <div class='cardform'>
+          <div class="cardformtitle">
+            Create Item
+          </div>
+          <div class="cardformbody" >
+            <label for="name">Item Name*:</label>
+            <input type="text" ng-model="formData.name" name="name" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="description">Description:</label> 
+            <input type="text" ng-model="formData.description" name="description" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="quantity">Quantity*:</label>
+            <input type="text" ng-model="formData.quantity" name="quantity" value="" required>
+          </div>
+          <div class="cardformbody">
+            <label for="price">Unit Price:</label>
+            <input type="text" ng-model="formData.price" name="price" value="">
+          </div>
+          <div class="cardfooter">
+
+            <button type="submit" class='button-teal' name="submit" value='Create' >Create</button>
+            <a href="#home"><input type='button' class='button-red' value='Cancel'></a>
+                <br>{{ formData }}{{errorName}}
+
+                             
+          </div>
+        </div>
+      </div>
+    </fieldset>
+</form>
+</div>
