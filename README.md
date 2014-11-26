@@ -6,7 +6,9 @@ Created for a minimal AngularJS 1.3 template.
 Requires bower, and node if you want to run web server
 
 Install:
+
 bower install (angular files)
+
 npm install (optional node express server; to start after install: node server.js )
 
 Includes:
