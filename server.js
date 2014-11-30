@@ -1,18 +1,18 @@
 var express = require("express"),
-    app = express(),
-    bodyParser = require('body-parser'),
-    errorHandler = require('errorhandler'),
-    methodOverride = require('method-override'),
-    port = parseInt(process.env.PORT, 10) || 4000;
+  app = express(),
+  bodyParser = require('body-parser'),
+  errorHandler = require('errorhandler'),
+  methodOverride = require('method-override'),
+  port = parseInt(process.env.PORT, 10) || 4000;
 
-	/*app.use(function(req, res, next) {
-    if (req.headers.origin) {
-        res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization')
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE')
-        if (req.method === 'OPTIONS') return res.send(200)
-    }
-    next()
+/*app.use(function(req, res, next) {
+  if (req.headers.origin) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization')
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE')
+  if (req.method === 'OPTIONS') return res.send(200)
+}
+next()
 }) */
 
 app.use(methodOverride());
@@ -27,16 +27,16 @@ app.use(errorHandler({
 }));
 
 
-	var Item = require('./app/models/items');
+var Item = require('./app/models/items');
 
 
-	var mongoose   = require('mongoose');
-	var db = mongoose.connect('mongodb://hegel:hegel@proximus.modulusmongo.net:27017/Iqu6jypy', function(err) {
-		if (err) {
-		console.error('\x1b[31m', 'Could not connect to MongoDB!');
-		console.log(err);
-		}
-	});
+var mongoose = require('mongoose');
+var db = mongoose.connect('mongodb://hegel:hegel@proximus.modulusmongo.net:27017/Iqu6jypy', function (err) {
+  if (err) {
+    console.error('\x1b[31m', 'Could not connect to MongoDB!');
+    console.log(err);
+	}
+});
 
 //app.get("/", function (req, res) {
   //res.redirect("/");
@@ -55,33 +55,34 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-	res.json({ message: 'You are in the api root !' });	
+	res.json({ message: 'You are in the api root !' });
 });
 
 // more routes for our API will happen here
 
-router.route('/items')
+router.route('/api/items')
 
 	// create a bear (accessed at POST http://localhost:8080/api/bears)
 	.post(function(req, res) {
-		
+
 		var item = new Item(); 		// create a new instance of the Bear model
 		item.item_name = req.body.item_name;  // set the bears name (comes from the request)
 
 		// save the bear and check for errors
 		item.save(function(err) {
-			if (err)
+			if (err){
 				res.send(err);
+      }
 			//res.setHeader('Content-Type','application/json');
                 	//res.setHeader('Access-Control-Allow-Origin','*');
                 	//res.setHeader('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
                 	//res.writeHead(200);
 			//res.json({ message: 'Bear created!' });
 			res.json({message: "Kevin says:" + req.body.item_name});
-		
+
 		});
 	})
-		
+
 	.get(function(req, res){
 		Item.find(function(err, item){
 			if (err)
@@ -91,7 +92,7 @@ router.route('/items')
 			//res.json(item[i]._id);
 		//};
 		});
-	
+
 	});
 
 
@@ -102,7 +103,7 @@ router.route('/bears')
 
 	// create a bear (accessed at POST http://localhost:8080/api/bears)
 	.post(function(req, res) {
-		
+
 		var bear = new Bear(); 		// create a new instance of the Bear model
 		bear.name = req.body.name;  // set the bears name (comes from the request)
 
@@ -116,30 +117,30 @@ router.route('/bears')
                 	//res.writeHead(200);
 			//res.json({ message: 'Bear created!' });
 			res.json({message: "Kevin says:" + req.body.name});
-		
+
 		});
 	})
-		
+
 	.get(function(req, res){
 		Bear.find(function(err, bears){
 			if (err)
 				res.send(err);
 			res.json(bears);
 		});
-	
+
 	});
 
 router.route('/bears/:bear_id')
-	
+
 	// get the bear with that id
 	.get(function(req, res){
-		
+
 		Bear.findById(req.params.bear_id, function(err, bear){
 			if (err)
 			res.send(err);
 		res.json(bear);
 	});
-	
+
 })
 
 	.put(function(req, res){
@@ -147,7 +148,7 @@ router.route('/bears/:bear_id')
 			if (err) res.send(err);
 		//update the bear
 		bear.name = req.body.name;
-		
+
 		//save the bear
 		bear.save(function(err){
 			if (err) res.send(err);

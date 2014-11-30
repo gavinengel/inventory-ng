@@ -4,17 +4,17 @@
 
     <script src="js/lib/angular/angular.min.js"></script>
     <script src="js/lib/angular-route/angular-route.min.js"></script>
-    <script src="js/app.js"></script>   
+    <script src="js/app.js"></script>
     <script src="js/controllers/controllers.js"></script>
-    <script src="js/services/services.js"></script> 
-    <link rel="stylesheet" type="text/css" href="css/items.css"> </head> 
-    
+    <script src="js/services/services.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/items.css"> </head>
+
     <!-- remove jquery/bootstrap before writing any real code -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css">
 
-   
+
 
     <script>
       function createupdate(){
@@ -24,17 +24,17 @@
 
       var jsonflag = false;
     function showhidejson(){
-  
+
   if (!jsonflag){
      document.getElementById('jsoncell').style.display ='inline';
         document.getElementById('showjson').value ='hide';
      jsonflag=true;
-     return false; 
+     return false;
   }else
     document.getElementById('jsoncell').style.display ='none';
     document.getElementById('showjson').value ='json';
      jsonflag=false;
-     return false; 
+     return false;
     }
       </script>
 </head>
@@ -52,17 +52,13 @@
         <option value="name">Alphabetical</option>
         <option value="age">Newest</option>
       </select>
-  </div> 
+  </div>
 
  <div ng-view></div>
-
-
-  
-   <!-- <div ng-repeat="item in items | array | filter:query">
-      {{item.item_name}} 
+ <!--  <div ng-repeat="item in items | array | filter:query">
+      {{item.item_name}}
       <p>{{item.item_desc}}</p>
     </div> -->
-
 </body>
 </html>
 
