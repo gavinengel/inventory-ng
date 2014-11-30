@@ -35,22 +35,22 @@ var db = mongoose.connect('mongodb://hegel:hegel@proximus.modulusmongo.net:27017
   if (err) {
     console.error('\x1b[31m', 'Could not connect to MongoDB!');
     console.log(err);
-	}
+  }
 });
 
 //app.get("/", function (req, res) {
   //res.redirect("/");
 //});
 
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router(); 				// get an instance of the express Router
+// API ROUTES
 
-// middleware to use for all requests
+var router = express.Router();
+
 router.use(function(req, res, next) {
-	// do logging
+
 	console.log('Something is happening.');
 	next(); // make sure we go to the next routes and don't stop here
+
 });
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
@@ -60,14 +60,17 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
-router.route('/api/items')
+router.route('/items')
 
 	// create a bear (accessed at POST http://localhost:8080/api/bears)
 	.post(function(req, res) {
 
+    console.log(req);
 		var item = new Item(); 		// create a new instance of the Bear model
-		item.item_name = req.body.item_name;  // set the bears name (comes from the request)
-
+		item.name = req.body.name;  // set the bears name (comes from the request)
+    item.description = req.body.description;
+    item.price = req.body.price;
+    item.quantity = req.body.quantity;
 		// save the bear and check for errors
 		item.save(function(err) {
 			if (err){
@@ -78,7 +81,7 @@ router.route('/api/items')
                 	//res.setHeader('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
                 	//res.writeHead(200);
 			//res.json({ message: 'Bear created!' });
-			res.json({message: "Kevin says:" + req.body.item_name});
+			res.json({message: "Kevin says:" + req.body.name});
 
 		});
 	})

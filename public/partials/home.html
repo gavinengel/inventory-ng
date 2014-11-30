@@ -9,17 +9,17 @@
 
   <div class="cardcontainer">
     <div class='card' ng-repeat="item in items | array | filter:query | orderBy:orderProp">
-      <div class='cardtitle'>{{item.item_name}}
+      <div class='cardtitle'>{{item.name}}
       </div>
       <div class='cardbody'>
-        <div>Description: {{item.item_desc}}
+        <div>Description: {{item.description}}
         </div>
         <div>
-          Quantity: {{item.item_quantity}}
+          Quantity: {{item.quantity}}
         </div>
         <div>
           Price: $: {{item.price}}
-          <br>Resource Id: {{item.item_id}}
+          <br>Resource Id: {{item.id}}
         </div>
         <div>
           <small><i>updated: {{item.ts}}</i></small>

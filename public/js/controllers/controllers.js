@@ -20,12 +20,14 @@ itemControllers.controller('ItemListCtrl', function ($scope, $http, $route) {
 
   $http.get('/api/items').success(function (data) {
 
-    for (d in data) {
-      if (data.hasOwnProperty(d)) {
-        console.log(data[d]);
-      }
-    }
-  $scope.items = data;
+    //var d;
+
+    //for (d in data) {
+      //if (data.hasOwnProperty(d)) {
+        //console.log(data[d]);
+      //}
+    //}
+    $scope.items = data;
   });
 
   $scope.orderProp = 'item.item_id';
@@ -91,17 +93,23 @@ itemControllers.controller('itemCreate', function itemCreate($scope, $http) {
 
    // process the update form
   $scope.processUpdate = function () {
+    var d;
+    for (d in $scope.formData) {
+      if ($scope.formData.hasOwnProperty(d)) {
+        console.log($scope.formData);
+      }
+    }
 
     //console.log('parm:' + param($scope.formData));
     $http({
       method  : 'POST',
-      url     : 'items/index.php',
-      data    : param($scope.formData),  // pass in data as strings
-      headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+      url     : '/api/items',
+      data    : $scope.formData,  // pass in data as strings
+      headers : { 'Content-Type': 'application/json' }  // set the headers so angular passing info as form data (not request payload)
     })
       .success(function (data) {
         if (!data.success) {
-          console.log('error');
+          console.log(data.message);
         } else {
           // if successful, bind success message to message
           $scope.message = data.message;
