@@ -31,7 +31,6 @@
 
             <button type="submit" class='button-teal' name="submit" value='Create' >Create</button>
             <a href="#home"><input type='button' class='button-red' value='Cancel'></a>
-                <br>{{ cformData }}{{errorName}}
           </div>
         </div>
       </div>
@@ -44,12 +43,9 @@
       <div class='content float-left'>
         <div class='cardform'>
           <div class='cardformtitle'>
-              Update Item
+              Update Item: {{formData.name}}
           </div>
-          <div class='cardformbody'>
-            <label for="_id">Item ID:</label>
-            <input type="text" ng-model="formData._id" name="itemid" value="">
-          </div>
+
           <div class="cardformbody">
             <label for="name">Item Name (required):</label>
             <input type="text" ng-model="formData.name" name="name" value="">
@@ -66,9 +62,12 @@
             <label for="price">Unit Price:</label>
             <input type="text" ng-model="formData.price" name="price" value="">
           </div>
+          <div class='cardformbody'>
+            <label for="_id">Item ID:</label>
+            <input type="text" ng-model="formData._id" name="itemid" value="" readonly="" style="font-size:8px;">
+          </div>
           <div class="cardfooter">
-          <button type="submit" class="button-teal" value="Update" >Submit</button>&nbsp;<a href="#home"><input type="button" class="button-red" value="Cancel"></a>
-          {{formData}}{{errorName}}
+          <button type="submit" class="button-white" value="Update" >Submit</button>&nbsp;<a href="#home"><input type="button" class="button-lightred" value="Cancel"></a>
           </div>
         </div>
       </div>
@@ -87,7 +86,9 @@
       </div>
       <div>
         Price: $: {{item.price}}
-        <br>Resource Id: {{item._id}}
+      </div>
+      <div style="font-size:8px;">
+       Resource Id: {{item._id}}
       </div>
       <div>
         <small><i>updated: {{item.ts}}</i></small>

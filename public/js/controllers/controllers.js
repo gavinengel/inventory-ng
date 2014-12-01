@@ -11,33 +11,34 @@ itemFilters.filter('array', function () {
   };
 });
 
+// controller for main view (home.html)
 var itemControllers = angular.module('itemControllers', []);
 
-  //get ItemList
-itemControllers.controller('ItemListCtrl', function ($scope, $http, $location, $route) {
+  //get list of all -- should be paginated
+itemControllers.controller('ItemListCtrl', function ($scope, $http, $location) {
+   // holds the form data
+  $scope.formData = {};
+
   $scope.showupdate = false;
   $scope.showcreate = false;
 
-  // X-f35e678261fde10f4ce97d1a91881c9f
-  ///$http.get('http://inventory-ktleary.rhcloud.com/items/').success(function (data) {
-
-  //by default, load the cards
-
+  //by default, load the cards when the controller loads
   $http.get('/api/items').success(function (data) {
     $scope.items = data;
   });
 
 
+  //show the create new item section
   $scope.showCreate = function () {
     $scope.showcreate = true;
-  }
+  };
 
-  // create the update card
+  // show and populate the update card
   $scope.updateItem = function (_id) {
     $scope.showupdate = true;
-
+    var d;
     $http.get('/api/items/' + _id).success(function (data) {
-      for (d in data){
+      for (d in data) {
         if (data.hasOwnProperty(d)) {
           console.log('property: ' + d + 'value: ' + data[d]);
         }
@@ -48,29 +49,20 @@ itemControllers.controller('ItemListCtrl', function ($scope, $http, $location, $
   };
 
 
+  //change the location after post/put
+  var changeLocation = function (url, forceReload) {
+    $scope = $scope || angular.element(document).scope();
+    if (forceReload || $scope.$$phase) {
+      window.location = url;
+    } else {
+      $location.path(url);
+      $scope.$apply();
+    }
+  };
 
-//be sure to inject $scope and $location
-var changeLocation = function(url, forceReload) {
-  $scope = $scope || angular.element(document).scope();
-  if(forceReload || $scope.$$phase) {
-    window.location = url;
-  }
-  else {
-    //only use this if you want to replace the history stack
-    //$location.path(url).replace();
-
-    //this this if you want to change the URL and add it to the history stack
-    $location.path(url);
-    $scope.$apply();
-  }
-};
-
- // holds the form data
-  $scope.formData = {};
 
    // process the create form
   $scope.processCreate = function () {
-
     //console.log('parm:' + param($scope.formData));
     $http({
       method  : 'POST',
@@ -97,7 +89,7 @@ var changeLocation = function(url, forceReload) {
     });
 
     changeLocation('/', false);
-  }
+  };
 
 
   $scope.deleteItem = function (_id) {
@@ -105,15 +97,13 @@ var changeLocation = function(url, forceReload) {
       method  : 'DELETE',
       url     : '/api/items/' + _id,
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-    }).success(function (d){
+    }).success(function (d) {
       console.log(d);
     });
-
   };
-
 });
 
-// create Update Form  and pass in $scope and $http
+// not really being used in this implementation -- was written for partials and maybe someday a dedicated data entry page
 itemControllers.controller('itemCreate', function itemCreate($scope, $http) {
 
   // holds the form data
@@ -146,13 +136,37 @@ itemControllers.controller('itemCreate', function itemCreate($scope, $http) {
   };
 });
 
-// create Update Form  and pass in $scope and $http
+// not being used in this implementation
 itemControllers.controller('itemUpdate', function itemUpdate($scope, $http) {
 
   // holds the form data
   $scope.formData = {};
 
-  //rewrite the PUT params in form-encoded format
+
+   // process the update form
+  $scope.processUpdate = function () {
+
+    $http({
+      method  : 'PUT',
+      url     : 'items/index.php',
+      data    : $scope.formData,  // pass in data as strings
+      headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+    }).success(function (data) {
+      console.log(data);
+
+      if (!data.success) {
+        console.log('error');
+      } else {
+        // if successful, bind success message to message
+        $scope.message = data.message;
+      }
+    });
+  };
+});
+
+
+
+/*  //rewrite the PUT params in form-encoded format -- was used for original PHP version
   var param = function (obj) {
     var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
 
@@ -185,31 +199,7 @@ itemControllers.controller('itemUpdate', function itemUpdate($scope, $http) {
     }
     return query.length ? query.substr(0, query.length - 1) : query;
   };
-
-   // process the update form
-  $scope.processUpdate = function () {
-
-    console.log('parm:' + param($scope.formData));
-    $http({
-      method  : 'PUT',
-      url     : 'items/index.php',
-      data    : param($scope.formData),  // pass in data as strings
-      headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-    }).success(function (data) {
-      console.log(data);
-
-      if (!data.success) {
-        console.log('error');
-      } else {
-        // if successful, bind success message to message
-        $scope.message = data.message;
-      }
-    });
-  };
-});
-
-
-
+*/
 
 
 /*
