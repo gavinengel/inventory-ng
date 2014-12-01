@@ -65,7 +65,7 @@ router.route('/items')
 	// create a bear (accessed at POST http://localhost:8080/api/bears)
 	.post(function(req, res) {
 
-    console.log(req);
+    console.log(req.body.name);
 		var item = new Item(); 		// create a new instance of the Bear model
 		item.name = req.body.name;  // set the bears name (comes from the request)
     item.description = req.body.description;
@@ -169,11 +169,11 @@ router.route('/items/:item_id')
 
 	.delete(function(req, res){
 
-		Bear.remove({
-			_id: req.params.bear_id
-		}, function (err, bear){
+		Item.remove({
+			_id: req.params.item_id
+		}, function (err, item){
 			if (err) res.send(err);
-		res.json({message: "Bear removed."});
+		res.json({message: "Item removed."});
 		});
 	});
 // REGISTER OUR ROUTES -------------------------------

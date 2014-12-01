@@ -16,6 +16,8 @@ var itemControllers = angular.module('itemControllers', []);
   //get ItemList
 itemControllers.controller('ItemListCtrl', function ($scope, $http, $location, $route) {
   $scope.showupdate = false;
+  $scope.showcreate = false;
+
   // X-f35e678261fde10f4ce97d1a91881c9f
   ///$http.get('http://inventory-ktleary.rhcloud.com/items/').success(function (data) {
 
@@ -26,11 +28,13 @@ itemControllers.controller('ItemListCtrl', function ($scope, $http, $location, $
   });
 
 
+  $scope.showCreate = function () {
+    $scope.showcreate = true;
+  }
+
   // create the update card
   $scope.updateItem = function (_id) {
     $scope.showupdate = true;
-
-
 
     $http.get('/api/items/' + _id).success(function (data) {
       for (d in data){
@@ -61,6 +65,32 @@ var changeLocation = function(url, forceReload) {
   }
 };
 
+ // holds the form data
+  $scope.formData = {};
+
+   // process the create form
+  $scope.processCreate = function () {
+
+    //console.log('parm:' + param($scope.formData));
+    $http({
+      method  : 'POST',
+      url     : '/api/items',
+      data    : $scope.cformData,  // pass in data as strings
+      headers : { 'Content-Type': 'application/json' }  // set the headers so angular passing info as form data (not request payload)
+    })
+      .success(function (data) {
+        if (!data.success) {
+          console.log(data.message);
+        } else {
+          // if successful, bind success message to message
+          $scope.message = data.message;
+        }
+      });
+    changeLocation('/', false);
+  };
+
+
+
   $scope.processUpdate = function () {
     $http.put('/api/items/' + $scope.formData._id, $scope.formData).success(function (d) {
       console.log(d);
@@ -70,14 +100,15 @@ var changeLocation = function(url, forceReload) {
   }
 
 
-  $scope.deleteItem = function (item_id) {
+  $scope.deleteItem = function (_id) {
     $http({
       method  : 'DELETE',
-      url     : 'items/index.php',
-      data    : "del_itemid=" + item_id,
+      url     : '/api/items/' + _id,
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+    }).success(function (d){
+      console.log(d);
     });
-    $route.reload();
+
   };
 
 });
@@ -88,46 +119,8 @@ itemControllers.controller('itemCreate', function itemCreate($scope, $http) {
   // holds the form data
   $scope.formData = {};
 
-/*
-  //rewrite the PUT params in form-encoded format
-  var param = function (obj) {
-    var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
-
-    for (name in obj) {
-      if (obj.hasOwnProperty(name)) {
-        value = obj[name];
-
-        if (value instanceof Array) {
-          for (i = 0; i < value.length; ++i) {
-            subValue = value[i];
-            fullSubName = name + '[' + i + ']';
-            innerObj = {};
-            innerObj[fullSubName] = subValue;
-            query += param(innerObj) + '&';
-          }
-        } else if (value instanceof Object) {
-          for (subName in value) {
-            if (value.hasOwnProperty(subName)) {
-              subValue = value[subName];
-              fullSubName = name + '[' + subName + ']';
-              innerObj = {};
-              innerObj[fullSubName] = subValue;
-              query += param(innerObj) + '&';
-            }
-          }
-        } else if (value !== undefined && value !== null) {
-          query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
-        }
-      }
-    }
-
-    return query.length ? query.substr(0, query.length - 1) : query;
-
-  };
-*/
-
-   // process the update form
-  $scope.processUpdate = function () {
+   // process the create form
+  $scope.processCreate = function () {
     var d;
     for (d in $scope.formData) {
       if ($scope.formData.hasOwnProperty(d)) {
@@ -139,7 +132,7 @@ itemControllers.controller('itemCreate', function itemCreate($scope, $http) {
     $http({
       method  : 'POST',
       url     : '/api/items',
-      data    : $scope.formData,  // pass in data as strings
+      data    : $scope.cformData,  // pass in data as strings
       headers : { 'Content-Type': 'application/json' }  // set the headers so angular passing info as form data (not request payload)
     })
       .success(function (data) {

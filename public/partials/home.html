@@ -1,13 +1,44 @@
+  <div class=bar>
+    <input type='button' class='button-lightgreen' value= 'Create New Item' ng-click="showCreate();">&nbsp;&nbsp;  <span class="cardformtitle">Search: <input placeholder=" items" ng-model="query"></span>
+  </div>
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
-
-
-
-    </div>
 
   <div class="cardcontainer">
+  <form id="create" ng-submit="processCreate()" ng-show='showcreate'>
+    <fieldset>
+      <div class="content float-left">
+        <div class='cardform'>
+          <div class="cardformtitle">
+            Create Item
+          </div>
+          <div class="cardformbody" >
+            <label for="name">Item Name*:</label>
+            <input type="text" ng-model="cformData.name" name="name" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="description">Description:</label>
+            <input type="text" ng-model="cformData.description" name="description" value="">
+          </div>
+          <div class="cardformbody">
+            <label for="quantity">Quantity*:</label>
+            <input type="text" ng-model="cformData.quantity" name="quantity" value="" required>
+          </div>
+          <div class="cardformbody">
+            <label for="price">Unit Price:</label>
+            <input type="text" ng-model="cformData.price" name="price" value="">
+          </div>
+          <div class="cardfooter">
+
+            <button type="submit" class='button-teal' name="submit" value='Create' >Create</button>
+            <a href="#home"><input type='button' class='button-red' value='Cancel'></a>
+                <br>{{ cformData }}{{errorName}}
+          </div>
+        </div>
+      </div>
+    </fieldset>
+</form>
+
+
   <form id="update" ng-submit="processUpdate()" ng-show='showupdate'>
     <fieldset>
       <div class='content float-left'>
@@ -43,6 +74,7 @@
       </div>
     </fieldset>
   </form>
+
   <div class='card' ng-repeat="item in items | array | filter:query | orderBy:orderProp">
     <div class='cardtitle'>{{item.name}}
     <hr>
@@ -62,7 +94,7 @@
       </div>
     </div>
     <div class="cardfooter">
-      <input type='button' class='button-white' value='Update' ng-click="updateItem(item._id);">&nbsp;&nbsp;<a href="#home"><input type='button' value='Delete' class='button-white' ng-click="deleteItem(123);"></a>
+      <input type='button' class='button-white' value='Update' ng-click="updateItem(item._id);">&nbsp;&nbsp;<a href="#home"><input type='button' value='Delete' class='button-white' ng-click="deleteItem(item._id);"></a>
     </div>
 
 </div>

@@ -35,7 +35,9 @@ inventoryNg.config(function ($routeProvider) {
 });
 
 
-
+var createItem = function () {
+  document.getElementById("create").style.display = "block";
+};
 
 
 //notsurewhatthisleftoverscrapis
