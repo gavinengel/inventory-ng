@@ -71,6 +71,7 @@ router.route('/items')
     item.description = req.body.description;
     item.price = req.body.price;
     item.quantity = req.body.quantity;
+    item.ts = new Date();
 		// save the bear and check for errors
 		item.save(function(err) {
 			if (err){
@@ -102,36 +103,7 @@ router.route('/items')
 
 
 
-router.route('/bears')
 
-	// create a bear (accessed at POST http://localhost:8080/api/bears)
-	.post(function(req, res) {
-
-		var bear = new Bear(); 		// create a new instance of the Bear model
-		bear.name = req.body.name;  // set the bears name (comes from the request)
-
-		// save the bear and check for errors
-		bear.save(function(err) {
-			if (err)
-				res.send(err);
-			//res.setHeader('Content-Type','application/json');
-                	//res.setHeader('Access-Control-Allow-Origin','*');
-                	//res.setHeader('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-                	//res.writeHead(200);
-			//res.json({ message: 'Bear created!' });
-			res.json({message: "Kevin says:" + req.body.name});
-
-		});
-	})
-
-	.get(function(req, res){
-		Bear.find(function(err, bears){
-			if (err)
-				res.send(err);
-			res.json(bears);
-		});
-
-	});
 
 router.route('/items/:item_id')
 
@@ -156,6 +128,7 @@ router.route('/items/:item_id')
     item.description = req.body.description;
     item.quantity = req.body.quantity;
     item.price = req.body.price;
+    item.ts = new Date();
 
 		//save the bear
 		item.save(function(err){

@@ -7,7 +7,8 @@ var ItemSchema = new Schema({
 	name: String,
   description: String,
   quantity: String,
-  price: String
+  price: String,
+  ts: Date
 });
 
 module.exports = mongoose.model('Item', ItemSchema);
