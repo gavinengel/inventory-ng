@@ -35,6 +35,9 @@ inventoryNg.config(function ($routeProvider) {
 });
 
 
+
+
+
 //notsurewhatthisleftoverscrapis
 /*halfquart.filter('matchName', function() {
   return function(items, query) {

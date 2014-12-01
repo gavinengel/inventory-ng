@@ -14,23 +14,61 @@ itemFilters.filter('array', function () {
 var itemControllers = angular.module('itemControllers', []);
 
   //get ItemList
-itemControllers.controller('ItemListCtrl', function ($scope, $http, $route) {
+itemControllers.controller('ItemListCtrl', function ($scope, $http, $location, $route) {
+  $scope.showupdate = false;
   // X-f35e678261fde10f4ce97d1a91881c9f
   ///$http.get('http://inventory-ktleary.rhcloud.com/items/').success(function (data) {
 
+  //by default, load the cards
+
   $http.get('/api/items').success(function (data) {
-
-    //var d;
-
-    //for (d in data) {
-      //if (data.hasOwnProperty(d)) {
-        //console.log(data[d]);
-      //}
-    //}
     $scope.items = data;
   });
 
-  $scope.orderProp = 'item.item_id';
+
+  // create the update card
+  $scope.updateItem = function (_id) {
+    $scope.showupdate = true;
+
+
+
+    $http.get('/api/items/' + _id).success(function (data) {
+      for (d in data){
+        if (data.hasOwnProperty(d)) {
+          console.log('property: ' + d + 'value: ' + data[d]);
+        }
+      }
+
+      $scope.formData = data;
+    });
+  };
+
+
+
+//be sure to inject $scope and $location
+var changeLocation = function(url, forceReload) {
+  $scope = $scope || angular.element(document).scope();
+  if(forceReload || $scope.$$phase) {
+    window.location = url;
+  }
+  else {
+    //only use this if you want to replace the history stack
+    //$location.path(url).replace();
+
+    //this this if you want to change the URL and add it to the history stack
+    $location.path(url);
+    $scope.$apply();
+  }
+};
+
+  $scope.processUpdate = function () {
+    $http.put('/api/items/' + $scope.formData._id, $scope.formData).success(function (d) {
+      console.log(d);
+    });
+
+    changeLocation('/', false);
+  }
+
 
   $scope.deleteItem = function (item_id) {
     $http({
@@ -87,9 +125,6 @@ itemControllers.controller('itemCreate', function itemCreate($scope, $http) {
 
   };
 */
-
-
-
 
    // process the update form
   $scope.processUpdate = function () {

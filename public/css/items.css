@@ -26,15 +26,9 @@ background: #eceff1;
  font-size: 12px;
 }
 
-
-.navbar-custom{
-  background: #9E9E9E;
-  a: #fff;
-}
-
-/*header{
+header{
   margin: 0px;
-   background: #03a9f4;
+   background: #0288D1;
    display: block;
  margin-bottom: 0px;
  padding: 8px;
@@ -44,7 +38,6 @@ header a, a:visited{
   color: #fff;
   text-decoration: none;
  }
-*/
 
 #main {
   background: #eee;
@@ -71,14 +64,55 @@ h4{
 }
 
 .button-lightblue{
-      background: #656273;
-    color: #ddd;
-  font-weight: 100em;
+  background: #03A9F4;
+  color: #fff;
+  font-weight: normal;
   padding: 5px;
   border: 3px;
 
   width: auto;
   }
+
+.button-lightgrey{
+  background: #4FC3F7;
+  color: #fff;
+  font-weight: normal;
+  padding: 5px;
+  border: 3px;
+
+  width: auto;
+  }
+
+.button-white{
+  background: #fff;
+  color: #333;
+  font-weight: normal;
+  padding: 5px;
+  border: 1px solid;
+  font-size: 8px;
+  width: auto;
+  }
+
+  .button-lightred{
+  background:   #FFCDD2;
+  color: #333;
+  font-weight: normal;
+  padding: 5px;
+  border: 1px solid;
+  font-size: 8px;
+  width: auto;
+  }
+
+
+.button-lightgreen{
+  background: #4CAF50;
+  color: #fff;
+  font-weight: normal;
+  padding: 5px;
+  border: 3px;
+  width: auto;
+  font-size: 12px;
+}
 
 .bar{
   margin: 0px;
@@ -89,7 +123,7 @@ h4{
 
 .button-teal{
   background:   #009688;
-  color: #ddd;
+  color: #fff;
   font-weight: bold;
   padding: 5px;
   border: 3px;
@@ -243,7 +277,7 @@ input[type="submit"] {
 
 .cardtitle{
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.25em;
   float: none;
   width: 300px;
   overflow: hidden;

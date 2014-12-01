@@ -133,29 +133,34 @@ router.route('/bears')
 
 	});
 
-router.route('/bears/:bear_id')
+router.route('/items/:item_id')
+
+
 
 	// get the bear with that id
 	.get(function(req, res){
 
-		Bear.findById(req.params.bear_id, function(err, bear){
+		Item.findById(req.params.item_id, function(err, item){
 			if (err)
 			res.send(err);
-		res.json(bear);
+		res.json(item);
 	});
 
 })
 
 	.put(function(req, res){
-		Bear.findById(req.params.bear_id, function(err, bear){
+		Item.findById(req.params.item_id, function(err, item){
 			if (err) res.send(err);
 		//update the bear
-		bear.name = req.body.name;
+		item.name = req.body.name;
+    item.description = req.body.description;
+    item.quantity = req.body.quantity;
+    item.price = req.body.price;
 
 		//save the bear
-		bear.save(function(err){
+		item.save(function(err){
 			if (err) res.send(err);
-		res.json({message: "Bear updated!" });
+		res.json({message: "Item updated!" });
 		});
 	});
 	})
